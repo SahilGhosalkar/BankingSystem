@@ -1,0 +1,27 @@
+L(ove)’ Hoptial
+Relationship health gauger
+There will be a visual scale/meter for how healthy the relationship is
+You can select red flags that decrease the health of the relationship OR add new ones
+A search feature to search through flags
+Can filter for red/green flags
+Can also find out whether something is a red or green flag
+Add new flags to be saved
+Keeps a log of issues to a flag
+Keeps a set  of people so there are no duplicates
+
+Requirements
+Maps
+Mapping issues to flags
+Set
+Keeping track of people who are tracking their relationship
+User input
+The user gives personal information and the details of issues
+Output
+Shows flags, user information and relationship advice
+BigO
+Sorting via how good a relationship is
+Searching through names
+Variety
+Flag is an abstract class
+Each color flag will implement it (would inheritance be better?)
+Sets and all those are interfaces
