@@ -4,7 +4,7 @@ abstract class Flag {
     private String description;
 
     public String toString(){
-      return("Color: " + color + "; \n Description: " + description);
+        return("Color: " + color + "; \n Description: " + description);
     }
 
 }
