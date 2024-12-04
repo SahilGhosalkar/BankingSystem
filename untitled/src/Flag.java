@@ -17,7 +17,7 @@ abstract class Flag {
         magnitude = 0;
     }
 
-    public String getMagnitude() {
+    public int getMagnitude() {
         return magnitude;
     }
 
