@@ -3,13 +3,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class RelationshipBar {
-    private double currentStatus;
+    private int currentStatus;
     private Queue<Flag> flagHistory;
 
     public RelationshipBar() {
         currentStatus = 50;
     }
-    public RelationshipBar(double initialStatus) {
+    public RelationshipBar(int initialStatus) {
         currentStatus = initialStatus;
         flagHistory = new LinkedList<>();
     }
@@ -21,7 +21,7 @@ public class RelationshipBar {
 
     public String statusToString() {
         String retString = "Current Status: ";
-        int numBars = (int) currentStatus / 5;
+        int numBars = currentStatus / 5;
         for (int i = 0; i < numBars; i++) {
             retString += "[] ";
         }

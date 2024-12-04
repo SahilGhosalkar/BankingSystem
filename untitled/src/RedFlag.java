@@ -1,9 +1,9 @@
 public class RedFlag extends Flag {
 
     // Constructor for RedFlag
-    public RedFlag(String description) {
+    public RedFlag(String description, int magnitude) {
         // Call parent class constructor with "Red" as the color
-        super("Red", description);
+        super("Red", description, magnitude);
     }
 
 }
