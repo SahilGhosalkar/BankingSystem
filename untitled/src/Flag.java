@@ -5,18 +5,30 @@ abstract class Flag {
     private int magnitude;
 
     // Constructor to initialize color and description
-    public Flag(String color, String description) {
+    public Flag(String color, String description, int mag) {
         this.color = color;
         this.description = description;
-        magnitude = 5;
+        this.magnitude = mag;
     }
 
-    // Getter for color
+    public Flag(){
+        color = "white";
+        description = "N/A";
+        magnitude = 0;
+    }
+
+    public String getMagnitude() {
+        return magnitude;
+    }
+
+    public void setMagnitude(int mag) {
+        magnitude = mag;
+    }
+
     public String getColor() {
         return color;
     }
 
-    // Getter for description
     public String getDescription() {
         return description;
     }
