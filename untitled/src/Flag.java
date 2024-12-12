@@ -2,27 +2,27 @@ abstract class Flag {
     private String color;
     private String description;
 
-    private int magnitude;
+    private int impact;
 
     // Constructor to initialize color and description
-    public Flag(String color, String description, int mag) {
+    public Flag(String color, String description, int imp) {
         this.color = color;
         this.description = description;
-        this.magnitude = mag;
+        this.impact = imp;
     }
 
     public Flag(){
         color = "white";
         description = "N/A";
-        magnitude = 0;
+        impact = 0;
     }
 
-    public int getMagnitude() {
-        return magnitude;
+    public int getImpact() {
+        return impact;
     }
 
-    public void setMagnitude(int mag) {
-        magnitude = mag;
+    public void setImpact(int imp) {
+        impact = imp;
     }
 
     public String getColor() {
@@ -38,5 +38,6 @@ abstract class Flag {
     public String toString() {
         return "Color: " + color + "; \nDescription: " + description;
     }
+
 }
 
