@@ -65,7 +65,7 @@ public class Person {
     }
 
     public String toString(){
-        return name + " is " + age + " years old with, " + eyeColor + " eyes, is " + heightInches + " inches tall, and is a " + gender;
+        return name + " is " + age + " years old and has " + eyeColor + " eyes, is " + heightInches + " inches tall, and is a " + gender;
     }
 
 
