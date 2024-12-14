@@ -29,9 +29,8 @@ public class RelationshipBar {
      */
     public void addFlagImpact(Flag coloredFlag) {
         flagHistory.add(coloredFlag);
-        currentStatus += coloredFlag.getMagnitude();
+        currentStatus += coloredFlag.getImpact();
     }
-
     /**
      * Generates visual representation of relationship status.
      * @return String containing console-style visual/graphic updating string status.
