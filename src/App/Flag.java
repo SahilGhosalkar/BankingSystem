@@ -1,4 +1,6 @@
-abstract class Flag {
+package App;
+
+public abstract class Flag{
     private String color;
     private String description;
 
