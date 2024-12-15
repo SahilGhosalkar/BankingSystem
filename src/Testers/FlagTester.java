@@ -5,6 +5,7 @@ import App.*;
 
 
 public class FlagTester {
+
     public static void main(String[] args) {
 
         Flag redFlag = new RedFlag("Doesnt want to show me off", -20);
@@ -21,4 +22,5 @@ public class FlagTester {
         System.out.println(greenFlag2);
 
     }
+
 }
