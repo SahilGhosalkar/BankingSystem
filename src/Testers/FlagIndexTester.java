@@ -36,7 +36,8 @@ public class FlagIndexTester {
             System.out.println("ID: " + entry.getKey() + " => " + entry.getValue());
         }
 
-        System.out.println("raw query search: " + index.searchFlags("show me off").toString());
+        // searching test cases
+        System.out.println("just a query search: " + index.searchFlags("show me off").toString());
 
         ArrayList<String> colorFilters = new ArrayList<>();
         colorFilters.add("green");
