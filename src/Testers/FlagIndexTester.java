@@ -38,20 +38,6 @@ public class FlagIndexTester {
             System.out.println("ID: " + entry.getKey() + " => " + entry.getValue());
         }
 
-        // searching test cases
-        System.out.println("just a query search: " + index.searchFlags("show me off").toString());
-
-        ArrayList<String> colorFilters = new ArrayList<>();
-        colorFilters.add("green");
-        System.out.println("query search with green-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
-
-        colorFilters.remove(0);
-        colorFilters.add("red");
-        System.out.println("query search with red-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
-
-        colorFilters.add("green");
-        System.out.println("query search with red AND green flag filters: " + index.searchFlags("show me off", colorFilters).toString());
-
 
 
 
@@ -67,6 +53,39 @@ public class FlagIndexTester {
         for (Entry<Integer, Flag> entry : allFlags.entrySet()) {
             System.out.println("ID: " + entry.getKey() + " => " + entry.getValue());
         }
+
+        System.out.println("SHOW ME OFF TEST CASES");
+        // searching test cases
+        System.out.println("just a query search: " + index.searchFlags("show me off").toString());
+
+        ArrayList<String> colorFilters = new ArrayList<>();
+        colorFilters.add("green");
+        System.out.println("query search with green-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
+
+        colorFilters.remove(0);
+        colorFilters.add("red");
+        System.out.println("query search with red-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
+
+        colorFilters.add("green");
+        System.out.println("query search with red AND green flag filters: " + index.searchFlags("show me off", colorFilters).toString());
+
+        // hmm okay this test case works fine but the first one doesn't its probably the language of the query + filler words
+        System.out.println("\nFLOWER TEST CASES");
+        // searching test cases
+        System.out.println("just a query search: " + index.searchFlags("flowers").toString());
+
+        ArrayList<String> colorFilters2 = new ArrayList<>();
+        colorFilters2.add("green");
+        System.out.println("query search with green-flag filter: " + index.searchFlags("flowers", colorFilters).toString());
+
+        colorFilters2.remove(0);
+        colorFilters2.add("red");
+        System.out.println("query search with red-flag filter: " + index.searchFlags("flowers", colorFilters).toString());
+
+        colorFilters2.add("green");
+        System.out.println("query search with red AND green flag filters: " + index.searchFlags("flowers", colorFilters).toString());
+
+
 
     }
 }
