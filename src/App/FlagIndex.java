@@ -1,12 +1,12 @@
 package App;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Collections;
-import java.util.TreeMap;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class FlagIndex {
     private Map<Integer, Flag> flagMap;
+    private String[] flagColors = new String[] {"green", "red"}; // supported flag colors
 
     public FlagIndex() {
         //map to store the ID-Flag pairs
@@ -32,5 +32,23 @@ public class FlagIndex {
     //Returns a read-only view of all Flags stored
     public Map<Integer, Flag> getAllFlags() {
         return Collections.unmodifiableMap(flagMap);
+    }
+
+    /***
+     * Imports flags stored in a database and assigns them IDS
+     * @param directory the file path where the database file is located, should be a .txt file
+     * @return True if the import made any changes to the flagMap, False if not
+     */
+    public boolean importFlagsFromFile(String directory) throws FileNotFoundException {
+        int oldLength = flagMap.size();
+        File db  = new File("src/App/FlagDatabase.txt");
+        Scanner scannie = new Scanner(db);
+
+        scannie.nextLine();
+        String[] rawLineData;
+
+
+
+        return flagMap.size() > oldLength;
     }
 }
