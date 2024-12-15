@@ -1,4 +1,8 @@
-package App;
+package Testers;
+
+import App.Flag;
+import App.FlagIndex;
+import App.RedFlag;
 
 import java.util.Map;
 import java.util.Set;

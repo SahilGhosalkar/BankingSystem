@@ -3,13 +3,14 @@ package App;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Collections;
+import java.util.TreeMap;
 
 public class FlagIndex {
     private Map<Integer, Flag> flagMap;
 
     public FlagIndex() {
         //map to store the ID-Flag pairs
-        flagMap = new HashMap<>();
+        flagMap = new TreeMap<>();
     }
 
 
