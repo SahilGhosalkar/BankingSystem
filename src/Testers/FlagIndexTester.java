@@ -4,13 +4,15 @@ import App.Flag;
 import App.FlagIndex;
 import App.RedFlag;
 
+import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
 public class FlagIndexTester {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         //creates flagIndex
         FlagIndex index = new FlagIndex();
 
@@ -57,6 +59,14 @@ public class FlagIndexTester {
         System.out.println("\nRemoving Flag with ID 1...");
         boolean removed = index.removeFlag(1);
         System.out.println("Flag with ID 1 removed: " + removed);
+
+
+        index.importFlagsFromFile("src/App/FlagDatabase.txt");
+        System.out.println("\n[UPDATED WITH IMPORT] All Flags in the index:");
+        Map<Integer, Flag> allFlags2 = index.getAllFlags();
+        for (Entry<Integer, Flag> entry : allFlags.entrySet()) {
+            System.out.println("ID: " + entry.getKey() + " => " + entry.getValue());
+        }
 
     }
 }
