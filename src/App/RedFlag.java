@@ -10,4 +10,9 @@ public class RedFlag extends Flag {
         super("Red", description, mag);
     }
 
+    public RedFlag(String description) {
+        // Call parent class constructor with "Red" as the color
+        super("Red", description, -10);
+    }
+
 }

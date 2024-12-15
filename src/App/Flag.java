@@ -38,7 +38,7 @@ public abstract class Flag{
     // toString method to display color and description
     @Override
     public String toString() {
-        return "Color: " + color + "; \nDescription: " + description;
+        return "Color: " + color + "; \nDescription: " + description + "; \nImpact: " + impact + "\n";
     }
 
 }
