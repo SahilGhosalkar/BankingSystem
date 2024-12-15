@@ -4,6 +4,7 @@ import App.Flag;
 import App.FlagIndex;
 import App.RedFlag;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -34,6 +35,22 @@ public class FlagIndexTester {
         for (Entry<Integer, Flag> entry : allFlags.entrySet()) {
             System.out.println("ID: " + entry.getKey() + " => " + entry.getValue());
         }
+
+        System.out.println("raw query search: " + index.searchFlags("show me off").toString());
+
+        ArrayList<String> colorFilters = new ArrayList<>();
+        colorFilters.add("green");
+        System.out.println("query search with green-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
+
+        colorFilters.remove(0);
+        colorFilters.add("red");
+        System.out.println("query search with red-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
+
+        colorFilters.add("green");
+        System.out.println("query search with red AND green flag filters: " + index.searchFlags("show me off", colorFilters).toString());
+
+
+
 
         //remove a flag
         System.out.println("\nRemoving Flag with ID 1...");
