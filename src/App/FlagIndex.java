@@ -33,4 +33,8 @@ public class FlagIndex {
     public Map<Integer, Flag> getAllFlags() {
         return Collections.unmodifiableMap(flagMap);
     }
+
+    public String toString() {
+        return flagMap.toString();
+    }
 }

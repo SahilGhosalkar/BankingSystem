@@ -2,9 +2,13 @@ package App;
 import java.util.*;
 
 public class App {
+    private Scanner scan = new Scanner(System.in);
+    private RelationshipBar bar = new RelationshipBar();
+    private FlagIndex index = new FlagIndex();
+    private int flagIndex = 0;
 
 public void showMenu() {
-    Scanner scan = new Scanner(System.in);
+
     boolean running = true;
 
     while (running) {
@@ -22,7 +26,7 @@ public void showMenu() {
                 updateRelationship(scan);
                 break;
             case 2:
-                //seeStatus();
+                System.out.println(bar.toString());
                 break;
             case 3:
                 //endRelationship();
@@ -43,6 +47,7 @@ public void showMenu() {
         System.out.println("\nUpdate Relationship Options:");
         System.out.println("1. Search Flags by Keyword");
         System.out.println("2. Update with Flag ID");
+        System.out.println("3. Add Flag");
 
         int choice = scan.nextInt();
         scan.nextLine(); // Consume newline
@@ -54,6 +59,30 @@ public void showMenu() {
                 break;
             case 2:
                 //update
+            case 3:
+                System.out.print("What color is the flag: ");
+                String color = scan.nextLine();
+                System.out.println();
+
+                System.out.print("What is the description: ");
+                String description = scan.nextLine();
+                System.out.println();
+
+                System.out.println("What is the magnitude of the flag: ");
+                int magnitude = scan.nextInt();
+                System.out.println();
+
+                if(color.toLowerCase().equals("green")){
+                    index.addFlag(flagIndex, new GreenFlag(description, magnitude));
+                }
+                if(color.toLowerCase().equals("red")){
+                    index.addFlag(flagIndex, new RedFlag(description, -magnitude));
+                }
+
+                flagIndex++;
+                System.out.println("Flag added");
+                break;
+
             default:
                 System.out.println("Invalid choice. Returning to main menu.");
         }
