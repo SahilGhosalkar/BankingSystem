@@ -52,13 +52,29 @@ public class RelationshipBar {
 
     /**
      * Generates a list of all the past flags, in order of when they were added.
-     * @return String list representation of all flags
+     * Uses an iterator to control how each flag is appended to the resulting string.
+     *
+     * @return A neatly formatted string representation of all flags in the queue.
      */
     public String pastFlagsToString() {
-//        String retString = "";
-//        Iterator iterator = flagHistory.iterator();
+        if (flagHistory.isEmpty()) {
+            return "[No flags yet]";
+        }
 
-        return flagHistory.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+
+        Iterator<Flag> iterator = flagHistory.iterator();
+        while (iterator.hasNext()) {
+            Flag f = iterator.next();
+            sb.append(f.toString());
+            if (iterator.hasNext()) {
+                sb.append("; ");
+            }
+        }
+
+        sb.append("]");
+        return sb.toString();
     }
 
     /***
