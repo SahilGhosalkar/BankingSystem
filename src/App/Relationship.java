@@ -27,6 +27,44 @@ public class Relationship {
     public void addFlagToRelationship(Flag flag) {
         relationshipBar.addFlagImpact(flag);
     }
+
+    /**
+     * Summarizes the green and red flags in the relationship.
+     * output format:
+     * "Although you did: [list of green flags], you ultimately SUCK because [list of red flags]"
+     *
+     * If there are no green flags, the list for green flags will be empty.
+     * If there are no red flags, the list for red flags will be empty.
+     *
+     * @return A summary string of all green and red flags.
+     */
+    public String breakUpText() {
+        // Temporary storage for green and red flags' descriptions
+        StringBuilder greenFlagsList = new StringBuilder();
+        StringBuilder redFlagsList = new StringBuilder();
+
+        // Iterate over all flags in the relationship bar
+        for (Flag f : relationshipBar.getAllFlags()) {
+            //check for color of flag to sort
+            if (f instanceof GreenFlag) {
+                if (greenFlagsList.length() > 0) {
+                    greenFlagsList.append(", ");
+                }
+                greenFlagsList.append(f.getDescription());
+            } else if (f instanceof RedFlag) {
+                if (redFlagsList.length() > 0) {
+                    redFlagsList.append(", ");
+                }
+                redFlagsList.append(f.getDescription());
+            }
+        }
+
+        String greenPart = greenFlagsList.length() > 0 ? greenFlagsList.toString() : "nothing good";
+        String redPart = redFlagsList.length() > 0 ? redFlagsList.toString() : "nothing bad";
+
+        return "Although you did: " + greenPart + ", you ultimately SUCK because " + redPart + "so we are OVER";
+    }
+
     /**
      * Returns a string representation of the relationship, including:
      * status (current or past)

@@ -1,4 +1,6 @@
-package App;
+package Testers;
+
+import App.*;
 
 public class RelationshipTester {
     public static void main(String[] args) {
