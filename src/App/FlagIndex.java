@@ -183,6 +183,8 @@ public class FlagIndex {
         }
         // returns flag IDS that are in potential IDS and match the query
         return searchFlagsFromSet(potentialIDS, query);
+    }
+
     public String toString() {
         return flagMap.toString();
 

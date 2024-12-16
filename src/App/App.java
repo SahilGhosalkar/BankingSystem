@@ -1,4 +1,6 @@
 package App;
+import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class App {
@@ -7,9 +9,10 @@ public class App {
     private FlagIndex index = new FlagIndex();
     private int flagIndex = 0;
 
-public void showMenu() {
+public void showMenu() throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
     boolean running = true;
+    index.importFlagsFromFile("src/App/FlagDatabase.txt");
 
     while (running) {
         System.out.println("\nHello! Welcome to Love Hospital!");
@@ -27,6 +30,7 @@ public void showMenu() {
                 break;
             case 2:
                 System.out.println(bar.toString());
+                System.out.println(index.toString());
                 break;
             case 3:
                 //endRelationship();
@@ -53,8 +57,9 @@ public void showMenu() {
 
         switch (choice) {
             case 1:
-
-                //searchFlags
+                System.out.println("Enter a keyword: ");
+                String keyword = scan.nextLine();
+                index.searchFlags(keyword);
                 break;
             case 2:
                 System.out.print("What color is the flag: ");
@@ -71,9 +76,11 @@ public void showMenu() {
 
                 if(color.toLowerCase().equals("green")){
                     index.addFlag(flagIndex, new GreenFlag(description, magnitude));
+                    bar.addFlagImpact(new GreenFlag(description, magnitude));
                 }
                 if(color.toLowerCase().equals("red")){
                     index.addFlag(flagIndex, new RedFlag(description, -magnitude));
+                    bar.addFlagImpact(new RedFlag(description, -magnitude));
                 }
 
                 flagIndex++;
@@ -87,7 +94,7 @@ public void showMenu() {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         App theThing = new App();
         Scanner scan = new Scanner(System.in);
 
