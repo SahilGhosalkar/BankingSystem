@@ -84,6 +84,10 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
                     index.addFlag(flagIndex, new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new RedFlag(description, -magnitude));
                 }
+                else{
+                    System.out.println("huh");
+                    break;
+                }
 
                 flagIndex++;
                 System.out.println("Flag added");
