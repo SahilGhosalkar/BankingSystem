@@ -55,19 +55,20 @@ public class FlagIndexTester {
         }
 
         System.out.println("SHOW ME OFF TEST CASES");
+        String q1 = "ghosts me";
         // searching test cases
-        System.out.println("just a query search: " + index.searchFlags("show me off").toString());
+        System.out.println("just a query search: " + index.searchFlags(q1).toString());
 
         ArrayList<String> colorFilters = new ArrayList<>();
         colorFilters.add("green");
-        System.out.println("query search with green-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
+        System.out.println("query search with green-flag filter: " + index.searchFlags(q1, colorFilters).toString());
 
         colorFilters.remove(0);
         colorFilters.add("red");
-        System.out.println("query search with red-flag filter: " + index.searchFlags("show me off", colorFilters).toString());
+        System.out.println("query search with red-flag filter: " + index.searchFlags(q1, colorFilters).toString());
 
         colorFilters.add("green");
-        System.out.println("query search with red AND green flag filters: " + index.searchFlags("show me off", colorFilters).toString());
+        System.out.println("query search with red AND green flag filters: " + index.searchFlags(q1, colorFilters).toString());
 
         // hmm okay this test case works fine but the first one doesn't its probably the language of the query + filler words
         System.out.println("\nFLOWER TEST CASES");

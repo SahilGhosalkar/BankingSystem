@@ -137,7 +137,7 @@ public class FlagIndex {
             // loops through all viable words in the description of the Flag
             for (String flagWord : splitFlagWords) {
                 // adds the Flag ID to returned Set if one of the keywords match, then stops searching through word
-                if (keyWords.contains(flagWord)) {
+                if (flagWord != null && keyWords.contains(flagWord)) {
                     flagIDS.add(key);
                     break;
                 }
