@@ -1,27 +1,38 @@
 package App;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Represents a relationship health tracker with a current status and a history of flags
+ * impacting the relationship. Flags can have positive or negative impacts.
+ */
 public class RelationshipBar {
-    private int currentStatus;
-    private Queue<Flag> flagHistory; // queue because for printing, FIFO--first in, first out;; for earliest --> latest succession
 
-    /***
-     * Default constructor for class. Initalizes relationship health to 50.
+    /**
+     * The current status of the relationship, ranging from 0 to 100.
+     */
+    private int currentStatus;
+
+    /**
+     * A queue holding the history of flags affecting the relationship, in order of addition.
+     */
+    private Queue<Flag> flagHistory; // Queue to maintain FIFO order for flags
+
+    /**
+     * Default constructor for the RelationshipBar class.
+     * Initializes the relationship health to 50.
      */
     public RelationshipBar() {
         this(50);
     }
 
-    public int getCurrentStatus() {
-        return currentStatus;
-    }
-
-    /***
-     * Non-default constructor for RelationshipBar class.
-     * @param initialStatus initial relationship health. Can be a high value if you're off to a good start or
-     *                      not if relationship is from rocky beginnings.
+    /**
+     * Non-default constructor for the RelationshipBar class.
+     *
+     * @param initialStatus The initial relationship health. Can be high for a positive start
+     *                      or low for a rocky beginning.
      */
     public RelationshipBar(int initialStatus) {
         currentStatus = initialStatus;
@@ -29,36 +40,49 @@ public class RelationshipBar {
     }
 
     /**
-     * Updates relationship health according to actions from the relationship.
-     * @param coloredFlag the flag/action commited by the partner. Can be green (positive), red (negative), or anything in between
+     * Gets the current status of the relationship.
+     *
+     * @return The current relationship health.
+     */
+    public int getCurrentStatus() {
+        return currentStatus;
+    }
+
+    /**
+     * Updates the relationship health based on an action (flag) from the partner.
+     *
+     * @param coloredFlag The flag/action committed by the partner. It can have a positive (green),
+     *                    negative (red), or neutral impact.
      */
     public void addFlagImpact(Flag coloredFlag) {
         flagHistory.add(coloredFlag);
         currentStatus += coloredFlag.getImpact();
     }
+
     /**
-     * Generates visual representation of relationship status.
-     * @return String containing console-style visual/graphic updating string status.
+     * Generates a visual representation of the current relationship status.
+     *
+     * @return A string containing a console-style graphic of the relationship status.
      */
     public String statusToString() {
-        String retString = "Current Status: ";
+        StringBuilder retString = new StringBuilder("Current Status: ");
         int numBars = currentStatus / 5;
         for (int i = 0; i < numBars; i++) {
-            retString += "[] ";
+            retString.append("[] ");
         }
         for (int i = numBars; i < 20; i++) {
-            retString += "__ ";
+            retString.append("__ ");
         }
-        retString += "(" + +currentStatus + "/100 ";
+        retString.append("(").append(currentStatus).append("/100");
 
-        return retString;
+        return retString.toString();
     }
 
     /**
-     * Generates a list of all the past flags, in order of when they were added.
-     * Uses an iterator to control how each flag is appended to the resulting string.
+     * Generates a formatted list of all past flags in the order they were added.
      *
-     * @return A neatly formatted string representation of all flags in the queue.
+     * @return A string representation of the flag history queue. If no flags exist, returns
+     *         "[No flags yet]".
      */
     public String pastFlagsToString() {
         if (flagHistory.isEmpty()) {
@@ -81,16 +105,13 @@ public class RelationshipBar {
         return sb.toString();
     }
 
-    /***
-     * Overall toString method to give status update + show flags impacting event
-     * @return
+    /**
+     * Combines the visual relationship status and the flag history into a single string.
+     *
+     * @return A string containing the current relationship status and flag history.
      */
+    @Override
     public String toString() {
         return statusToString() + "\n\nFlag history: " + pastFlagsToString();
     }
-
-
-
-
-
 }
