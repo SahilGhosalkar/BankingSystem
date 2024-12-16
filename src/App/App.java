@@ -57,9 +57,11 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
 
         switch (choice) {
             case 1:
-                System.out.println("Enter a keyword: ");
-                String keyword = scan.nextLine();
-                index.searchFlags(keyword);
+
+                System.out.println("Enter keywords: ");
+                String keywords = scan.nextLine();
+                System.out.println(index.searchFlags(keywords));
+
                 break;
             case 2:
                 System.out.print("What color is the flag: ");
