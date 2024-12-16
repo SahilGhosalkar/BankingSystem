@@ -5,6 +5,7 @@ public class Relationship {
     private Person person2;
     private boolean isPast;
     private RelationshipBar relationshipBar;
+    private FlagIndex index
     /**
      * Constructs a new Relationship between the two specified people, and sets whether
      * the relationship is current or past.
@@ -13,11 +14,12 @@ public class Relationship {
      * @param p2 second Person in the relationship.
      * @param isPast true if this relationship is from the past, false if it is ongoing.
      */
-    public Relationship(user p1, Person p2, boolean isPast) {
+    public Relationship(user p1, Person p2, boolean isPast, FlagIndex index) {
         this.person1 = p1;
         this.person2 = p2;
         this.isPast = isPast;
         this.relationshipBar = new RelationshipBar();
+        this.index = index;
     }
     /**
      * Adds a Flag event to the relationship, which affects the RelationshipBar status
@@ -44,7 +46,7 @@ public class Relationship {
         StringBuilder redFlagsList = new StringBuilder();
 
         // Iterate over all flags in the relationship bar
-        for (Flag f : relationshipBar.getAllFlags()) {
+        for (Flag f : index.getAllFlags()) {
             //check for color of flag to sort
             if (f instanceof GreenFlag) {
                 if (greenFlagsList.length() > 0) {
