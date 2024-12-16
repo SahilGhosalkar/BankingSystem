@@ -71,9 +71,11 @@ public void showMenu() {
 
                 if(color.toLowerCase().equals("green")){
                     index.addFlag(flagIndex, new GreenFlag(description, magnitude));
+                    bar.addFlagImpact(new GreenFlag(description, magnitude));
                 }
                 if(color.toLowerCase().equals("red")){
                     index.addFlag(flagIndex, new RedFlag(description, -magnitude));
+                    bar.addFlagImpact(new RedFlag(description, -magnitude));
                 }
 
                 flagIndex++;
