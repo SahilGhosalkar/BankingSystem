@@ -27,7 +27,13 @@ public class FlagIndex {
     }
 
 
-    //Adds a Flag to the index with ID
+    /**
+     * Adds a Flag to the index with the specified ID.
+     * If the ID already exists, it will overwrite the existing Flag.
+     *
+     * @param id   The unique identifier for the Flag.
+     * @param flag The Flag object to store.
+     */
     public void addFlag(int id, Flag flag) {
         flagMap.put(id, flag);
 
@@ -44,17 +50,31 @@ public class FlagIndex {
 
     }
 
-     //Removes the Flag associated with the given ID.
+    /**
+     * Removes the Flag associated with the given ID.
+     *
+     * @param id The ID of the Flag to remove.
+     * @return true if a Flag was removed, false if no Flag was found for the given ID.
+     */
     public boolean removeFlag(int id) {
         return flagMap.remove(id) != null && flagTokenizedMap.remove(id) != null;
     }
 
-    //Retrieves the Flag associated with the given ID.
+    /**
+     * Retrieves the Flag associated with the given ID.
+     *
+     * @param id The ID of the Flag to retrieve.
+     * @return The Flag object if found, or null if no Flag exists for the given ID.
+     */
     public Flag getFlag(int id) {
         return flagMap.get(id);
     }
 
-    //Returns a read-only view of all Flags stored
+    /**
+     * Retrieves a read-only view of all Flags in the index.
+     *
+     * @return An unmodifiable Map of all ID-Flag entries.
+     */
     public Map<Integer, Flag> getAllFlags() {
         return Collections.unmodifiableMap(flagMap);
     }
@@ -160,9 +180,25 @@ public class FlagIndex {
 
     }
 
-
     //oooh another todo is tostring for regualr
-
+    //don't fret zoya, kelley is here, and she has come with a toString for regular
+    /**
+     * Returns a string representation of the FlagIndex and its associated Flag.
+     * Each line after the header "FlagIndex:" displays a Flag ID and the details
+     * of the corresponding Flag (using Flag's own toString() method).
+     *
+     * @return A string containing the IDs and descriptions of all Flags in this index.
+     */
+    public String toString() {
+        StringBuilder sb = new StringBuilder("FlagIndex:\n");
+        for (Map.Entry<Integer, Flag> entry : flagMap.entrySet()) {
+            sb.append("ID: ").append(entry.getKey())
+                    .append(" => ")
+                    .append(entry.getValue().toString())
+                    .append("\n");
+        }
+        return sb.toString();
+    }
 
     /***
      * Searches through FlagIndex for flags of specific colors that match a specific search query.
