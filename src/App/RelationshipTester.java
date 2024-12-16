@@ -3,7 +3,7 @@ package App;
 public class RelationshipTester {
     public static void main(String[] args) {
 
-        Person alice = new user("dude1", "blue", 65, "female", 30);
+        User alice = new User("dude1", "blue", 65, "female", 30);
         Person bob = new Person("dude2", "green", 70, "male", 32);
 
         Relationship relationship = new Relationship(alice, bob, false);

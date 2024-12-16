@@ -221,8 +221,5 @@ public class FlagIndex {
         return searchFlagsFromSet(potentialIDS, query);
     }
 
-    public String toString() {
-        return flagMap.toString();
 
-    }
 }
