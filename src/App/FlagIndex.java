@@ -79,6 +79,7 @@ public class FlagIndex {
         return Collections.unmodifiableMap(flagMap);
     }
 
+
     /***
      * Imports flags stored in a database and assigns them IDS
      * @param directory the file path where the database file is located, should be a .txt file
@@ -218,5 +219,10 @@ public class FlagIndex {
         }
         // returns flag IDS that are in potential IDS and match the query
         return searchFlagsFromSet(potentialIDS, query);
+    }
+
+    public String toString() {
+        return flagMap.toString();
+
     }
 }
