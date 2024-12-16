@@ -14,6 +14,10 @@ public class RelationshipBar {
         this(50);
     }
 
+    public int getCurrentStatus() {
+        return currentStatus;
+    }
+
     /***
      * Non-default constructor for RelationshipBar class.
      * @param initialStatus initial relationship health. Can be a high value if you're off to a good start or

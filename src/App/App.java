@@ -12,58 +12,59 @@ public class App {
     private Person person = new Person();
     private Relationship relationship;
 
-public void showMenu() throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void showMenu() throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
-    boolean running = true;
-    index.importFlagsFromFile("src/App/FlagDatabase.txt");
+        boolean running = true;
+        index.importFlagsFromFile("src/App/FlagDatabase.txt");
 
-    System.out.println("Welcome to Love Hopital");
-    System.out.println("Please enter some details about yourself");
-    System.out.print("Name: ");
-    String name = scan.nextLine();
-    System.out.print("Age: ");
-    int age = scan.nextInt();
-    System.out.print("Gender: ");
-    String gender = scan.next();
-    System.out.print("Eye Color: ");
-    String eyeColor = scan.next();
-    System.out.print("Height: ");
-    int height = scan.nextInt();
-    user = new User(name, eyeColor, age, gender, height);
-    relationship = new Relationship(user,person, false);
 
-    while (running) {
-        System.out.println("What would you like to do today?");
-        System.out.println("1. Update Relationship");
-        System.out.println("2. See Status");
-        System.out.println("3. End Relationship");
-        System.out.println("4. Exit");
+        System.out.println("Welcome to Love Hopital");
+        System.out.println("Please enter some details about yourself");
+        System.out.print("Name: ");
+        String name = scan.nextLine();
+        System.out.print("Age: ");
+        int age = scan.nextInt();
+        System.out.print("Gender: ");
+        String gender = scan.next();
+        System.out.print("Eye Color: ");
+        String eyeColor = scan.next();
+        System.out.print("Height: ");
+        int height = scan.nextInt();
+        user = new User(name, eyeColor, age, gender, height);
+        relationship = new Relationship(user, person, false, index);
 
-        int choice = scan.nextInt();
-        scan.nextLine();
-        switch (choice) {
-            case 1:
-                updateRelationship(scan);
-                break;
-            case 2:
-                System.out.println(bar.toString());
-                System.out.println(index.toString());
-                break;
-            case 3:
-                System.out.println("Broken up");
-                relationship.setPast(true);
-                break;
-            case 4:
-                running = false;
-                System.out.println("Goodbye!");
-                break;
-            default:
-                System.out.println("Invalid choice. Please try again.");
+        while (running) {
+            System.out.println("What would you like to do today?");
+            System.out.println("1. Update Relationship");
+            System.out.println("2. See Status");
+            System.out.println("3. End Relationship");
+            System.out.println("4. Exit");
+
+            int choice = scan.nextInt();
+            scan.nextLine();
+            switch (choice) {
+                case 1:
+                    updateRelationship(scan);
+                    break;
+                case 2:
+                    System.out.println(bar.toString());
+                    System.out.println(index.toString());
+                    break;
+                case 3:
+                    System.out.println("Broken up");
+                    relationship.setPast(true);
+                    break;
+                case 4:
+                    running = false;
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+
+            scan.close();
         }
     }
-
-    scan.close();
-}
 
     private void updateRelationship(Scanner scan) {
         System.out.println("\nUpdate Relationship Options:");
@@ -75,11 +76,9 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
 
         switch (choice) {
             case 1:
-
                 System.out.println("Enter keywords: ");
                 String keywords = scan.nextLine();
                 System.out.println(index.searchFlags(keywords));
-
                 break;
             case 2:
                 System.out.print("What color is the flag: ");
@@ -94,23 +93,21 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
                 int magnitude = scan.nextInt();
                 System.out.println();
 
-                if(color.toLowerCase().equals("green")){
+                if (color.toLowerCase().equals("green")) {
                     index.addFlag(flagIndex, new GreenFlag(description, magnitude));
                     relationship.addFlagToRelationship(new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new GreenFlag(description, magnitude));
-                }
-                if(color.toLowerCase().equals("red")){
+                    flagIndex++;
+                    System.out.println("Flag added");
+                } else if (color.toLowerCase().equals("red")) {
                     index.addFlag(flagIndex, new RedFlag(description, -magnitude));
                     relationship.addFlagToRelationship(new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new RedFlag(description, -magnitude));
+                    flagIndex++;
+                    System.out.println("Flag added");
+                } else {
+                    System.out.println("Invalid flag color. Returning to menu.");
                 }
-                else{
-                    System.out.println("huh");
-                    break;
-                }
-
-                flagIndex++;
-                System.out.println("Flag added");
                 break;
 
             default:
@@ -118,15 +115,32 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
         }
     }
 
+    /**
+     * Checks the relationship's current status. If it's below a certain threshold,
+     * prompts the user to consider ending the relationship.
+     */
+    private void checkForBreakUp() {
+        //if relationship health less than 20 will prompt for breakup
+        int threshold = 20;
+        if (bar.getCurrentStatus() < threshold) {
+            System.out.println("Your relationship status is quite low. Would you like to break up? (yes/no)");
+            String answer = scan.nextLine().trim().toLowerCase();
+            if (answer.equals("yes")) {
+                String breakUpText = relationship.breakUpText(); // TODO need to update in the loop the "current relationship editting'
+                System.out.println("\nSending the following breakup text:\n");
+                System.out.println(breakUpText);
+                relationship.updateStatus();
+
+            } else {
+                System.out.println("Understood. You do you I suppose...");
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         App theThing = new App();
-        Scanner scan = new Scanner(System.in);
-
-       theThing.showMenu();
-
-
-
+        theThing.showMenu();
     }
 }

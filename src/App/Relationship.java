@@ -23,9 +23,15 @@ public class Relationship {
         this.index = index;
     }
 
+
+    public void updateStatus() {
+        this.isPast = true;
+    }
+
     public void setPast(boolean past) {
         isPast = past;
     }
+
 
     /**
      * Adds a Flag event to the relationship, which affects the RelationshipBar status
