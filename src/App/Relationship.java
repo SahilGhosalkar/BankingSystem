@@ -1,7 +1,7 @@
 package App;
 
 public class Relationship {
-    private Person person1;
+    private user person1;
     private Person person2;
     private boolean isPast;
     private RelationshipBar relationshipBar;
@@ -13,7 +13,7 @@ public class Relationship {
      * @param p2 second Person in the relationship.
      * @param isPast true if this relationship is from the past, false if it is ongoing.
      */
-    public Relationship(Person p1, Person p2, boolean isPast) {
+    public Relationship(user p1, Person p2, boolean isPast) {
         this.person1 = p1;
         this.person2 = p2;
         this.isPast = isPast;
