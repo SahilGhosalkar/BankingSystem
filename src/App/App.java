@@ -8,14 +8,31 @@ public class App {
     private RelationshipBar bar = new RelationshipBar();
     private FlagIndex index = new FlagIndex();
     private int flagIndex = 0;
+    private User user;
+    private Person person = new Person();
+    private Relationship relationship;
 
 public void showMenu() throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
     boolean running = true;
     index.importFlagsFromFile("src/App/FlagDatabase.txt");
 
+    System.out.println("Welcome to Love Hopital");
+    System.out.println("Please enter some details about yourself");
+    System.out.print("Name: ");
+    String name = scan.nextLine();
+    System.out.print("Age: ");
+    int age = scan.nextInt();
+    System.out.print("Gender: ");
+    String gender = scan.next();
+    System.out.print("Eye Color: ");
+    String eyeColor = scan.next();
+    System.out.print("Height: ");
+    int height = scan.nextInt();
+    user = new User(name, eyeColor, age, gender, height);
+    relationship = new Relationship(user,person, false);
+
     while (running) {
-        System.out.println("\nHello! Welcome to Love Hospital!");
         System.out.println("What would you like to do today?");
         System.out.println("1. Update Relationship");
         System.out.println("2. See Status");
@@ -33,7 +50,8 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
                 System.out.println(index.toString());
                 break;
             case 3:
-                //endRelationship();
+                System.out.println("Broken up");
+                relationship.setPast(true);
                 break;
             case 4:
                 running = false;
@@ -78,10 +96,12 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
 
                 if(color.toLowerCase().equals("green")){
                     index.addFlag(flagIndex, new GreenFlag(description, magnitude));
+                    relationship.addFlagToRelationship(new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new GreenFlag(description, magnitude));
                 }
                 if(color.toLowerCase().equals("red")){
                     index.addFlag(flagIndex, new RedFlag(description, -magnitude));
+                    relationship.addFlagToRelationship(new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new RedFlag(description, -magnitude));
                 }
                 else{
