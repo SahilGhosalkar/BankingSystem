@@ -13,21 +13,12 @@ public class Relationship {
      * @param p2 second Person in the relationship.
      * @param isPast true if this relationship is from the past, false if it is ongoing.
      */
-    public Relationship(Person p1, Person p2, boolean isPast) {
-        this.person1 = (User) p1;
+    public Relationship(User p1, Person p2, boolean isPast) {
+        this.person1 = p1;
         this.person2 = p2;
         this.isPast = isPast;
         this.relationshipBar = new RelationshipBar();
     }
-
-    public boolean breakup(){
-        System.out.println(person1 + "and is breaking up with " + person2.getName());
-        isPast = true;
-        return true;
-    }
-
-
-
     /**
      * Adds a Flag event to the relationship, which affects the RelationshipBar status
      *
@@ -61,5 +52,4 @@ public class Relationship {
 
         return relationshipInfo;
     }
-
 }
