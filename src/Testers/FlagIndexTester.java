@@ -46,6 +46,10 @@ public class FlagIndexTester {
         boolean removed = index.removeFlag(1);
         System.out.println("Flag with ID 1 removed: " + removed);
 
+        //NEW TEST FOR NEW FLAGINDEX TOSTRING METHOD
+        System.out.println("\nTesting FlagIndex toString():");
+        System.out.println(index.toString());
+
 
         index.importFlagsFromFile("src/App/FlagDatabase.txt");
         System.out.println("\n[UPDATED WITH IMPORT] All Flags in the index:");
