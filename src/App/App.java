@@ -30,6 +30,7 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
                 break;
             case 2:
                 System.out.println(bar.toString());
+                System.out.println(index.toString());
                 break;
             case 3:
                 //endRelationship();
@@ -56,9 +57,11 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
 
         switch (choice) {
             case 1:
+
                 System.out.println("Enter keywords: ");
                 String keywords = scan.nextLine();
                 System.out.println(index.searchFlags(keywords));
+
                 break;
             case 2:
                 System.out.print("What color is the flag: ");
