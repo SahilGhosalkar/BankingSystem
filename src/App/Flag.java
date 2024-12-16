@@ -8,7 +8,7 @@ public abstract class Flag{
 
     // Constructor to initialize color and description
     public Flag(String color, String description, int imp) {
-        this.color = color;
+        this.color = color.toLowerCase();
         this.description = description;
         this.impact = imp;
     }

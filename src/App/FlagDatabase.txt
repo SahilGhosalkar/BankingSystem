@@ -1,0 +1,8 @@
+Color,impact,description
+red,-20,ghosts you
+red,-20,doesn't buy you flowers
+red,-30,forgets your anniversary
+green,20,buys you flowers
+green,20,surprises you with dinner
+green,15,waits for you before leaving
+green,50, proposes to you
