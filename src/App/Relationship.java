@@ -52,4 +52,8 @@ public class Relationship {
 
         return relationshipInfo;
     }
+
+    public String toStringShort() {
+        return "Relationship between " + person1.getName() + " and " + person2.getName();
+    }
 }
