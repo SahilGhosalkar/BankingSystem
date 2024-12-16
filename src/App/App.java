@@ -50,12 +50,8 @@ public void showMenu() throws FileNotFoundException, InvocationTargetException, 
                 System.out.println(index.toString());
                 break;
             case 3:
-                if(relationship.breakup()){
-                    System.out.println("Broken up");
-                }
-                else{
-                    System.out.println("still together");
-                }
+                System.out.println("Broken up");
+                relationship.setPast(true);
                 break;
             case 4:
                 running = false;

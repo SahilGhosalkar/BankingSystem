@@ -19,6 +19,11 @@ public class Relationship {
         this.isPast = isPast;
         this.relationshipBar = new RelationshipBar();
     }
+
+    public void setPast(boolean past) {
+        isPast = past;
+    }
+
     /**
      * Adds a Flag event to the relationship, which affects the RelationshipBar status
      *
