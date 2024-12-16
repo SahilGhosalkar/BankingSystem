@@ -49,6 +49,7 @@ public class App {
                 case 2:
                     System.out.println(bar.toString());
                     System.out.println(index.toString());
+                    checkForBreakUp();
                     break;
                 case 3:
                     System.out.println("Broken up");
@@ -62,7 +63,6 @@ public class App {
                     System.out.println("Invalid choice. Please try again.");
             }
 
-            scan.close();
         }
     }
 
