@@ -46,8 +46,7 @@ public void showMenu() {
     private void updateRelationship(Scanner scan) {
         System.out.println("\nUpdate Relationship Options:");
         System.out.println("1. Search Flags by Keyword");
-        System.out.println("2. Update with Flag ID");
-        System.out.println("3. Add Flag");
+        System.out.println("2. Add Flag");
 
         int choice = scan.nextInt();
         scan.nextLine(); // Consume newline
@@ -58,8 +57,6 @@ public void showMenu() {
                 //searchFlags
                 break;
             case 2:
-                //update
-            case 3:
                 System.out.print("What color is the flag: ");
                 String color = scan.nextLine();
                 System.out.println();
