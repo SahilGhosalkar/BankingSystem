@@ -1,14 +1,11 @@
 package Testers;
 
-import App.Flag;
-import App.FlagIndex;
-import App.RedFlag;
+import App.*;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
 public class FlagIndexTester {
@@ -92,5 +89,23 @@ public class FlagIndexTester {
 
 
 
+    }
+
+    public static class RelationshipTester {
+        public static void main(String[] args) {
+
+            User alice = new User("dude1", "blue", 65, "female", 30);
+            Person bob = new Person("dude2", "green", 70, "male", 32);
+
+            Relationship relationship = new Relationship(alice, bob, false, new FlagIndex());
+
+            Flag redFlagBday = new RedFlag("forgot birthday", -10);
+            Flag greenFlagFlowers = new GreenFlag("bought flowers", 15);
+
+            relationship.addFlagToRelationship(redFlagBday);
+            relationship.addFlagToRelationship(greenFlagFlowers);
+
+            System.out.println(relationship);
+        }
     }
 }

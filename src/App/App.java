@@ -8,14 +8,32 @@ public class App {
     private RelationshipBar bar = new RelationshipBar();
     private FlagIndex index = new FlagIndex();
     private int flagIndex = 0;
+    private User user;
+    private Person person = new Person();
+    private Relationship relationship;
 
     public void showMenu() throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         boolean running = true;
         index.importFlagsFromFile("src/App/FlagDatabase.txt");
 
+
+        System.out.println("Welcome to Love Hopital");
+        System.out.println("Please enter some details about yourself");
+        System.out.print("Name: ");
+        String name = scan.nextLine();
+        System.out.print("Age: ");
+        int age = scan.nextInt();
+        System.out.print("Gender: ");
+        String gender = scan.next();
+        System.out.print("Eye Color: ");
+        String eyeColor = scan.next();
+        System.out.print("Height: ");
+        int height = scan.nextInt();
+        user = new User(name, eyeColor, age, gender, height);
+        relationship = new Relationship(user, person, false, index);
+
         while (running) {
-            System.out.println("\nHello! Welcome to Love Hospital!");
             System.out.println("What would you like to do today?");
             System.out.println("1. Update Relationship");
             System.out.println("2. See Status");
@@ -31,10 +49,10 @@ public class App {
                 case 2:
                     System.out.println(bar.toString());
                     System.out.println(index.toString());
-                    checkForBreakUp();
                     break;
                 case 3:
-                    //endRelationship();
+                    System.out.println("Broken up");
+                    relationship.setPast(true);
                     break;
                 case 4:
                     running = false;
@@ -43,9 +61,9 @@ public class App {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        }
 
-        scan.close();
+            scan.close();
+        }
     }
 
     private void updateRelationship(Scanner scan) {
@@ -77,11 +95,13 @@ public class App {
 
                 if (color.toLowerCase().equals("green")) {
                     index.addFlag(flagIndex, new GreenFlag(description, magnitude));
+                    relationship.addFlagToRelationship(new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new GreenFlag(description, magnitude));
                     flagIndex++;
                     System.out.println("Flag added");
                 } else if (color.toLowerCase().equals("red")) {
                     index.addFlag(flagIndex, new RedFlag(description, -magnitude));
+                    relationship.addFlagToRelationship(new RedFlag(description, -magnitude));
                     bar.addFlagImpact(new RedFlag(description, -magnitude));
                     flagIndex++;
                     System.out.println("Flag added");
@@ -106,10 +126,10 @@ public class App {
             System.out.println("Your relationship status is quite low. Would you like to break up? (yes/no)");
             String answer = scan.nextLine().trim().toLowerCase();
             if (answer.equals("yes")) {
-                String breakUpText = breakupText();
+                String breakUpText = relationship.breakUpText(); // TODO need to update in the loop the "current relationship editting'
                 System.out.println("\nSending the following breakup text:\n");
                 System.out.println(breakUpText);
-                updateStatus();
+                relationship.updateStatus();
 
             } else {
                 System.out.println("Understood. You do you I suppose...");
